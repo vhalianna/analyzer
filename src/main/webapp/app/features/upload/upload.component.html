@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <h2 class="mb-3">📤 Carga de Archivo Gerencial</h2>
+  
+    <div class="card p-4 shadow-sm">
+      <div class="mb-3">
+        <label for="fileInput" class="form-label">Seleccionar archivo (.xlsx o .csv): </label>
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control" accept=".xlsx,.csv" />
+      </div>
+  <br/>
+      <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-primary" (click)="onUpload()" [disabled]="!selectedFile">
+          <i class="bi bi-upload"></i> Subir Archivo
+        </button>
+        @if(selectedFile){
+            <span class="text-muted">
+            Archivo seleccionado: <strong>{{ selectedFile.name }}</strong>
+            </span>
+        }
+      </div>
+    </div>
+  
+    @if(mensaje){
+      {{ mensaje }}
+    }
+  </div>
+  
