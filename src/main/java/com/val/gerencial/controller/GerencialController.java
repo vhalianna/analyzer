@@ -3,6 +3,7 @@ package com.val.gerencial.controller;
 import com.val.gerencial.model.Gerencial;
 import com.val.gerencial.model.ResumenGerencialDTO;
 import com.val.gerencial.service.GerencialService;
+import com.val.gerencial.service.PersonaService;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,13 @@ public class GerencialController {
     @Autowired
     private GerencialService gerencialService;
 
+    @Autowired PersonaService personaService;
+
     @PostMapping("/uploadFile")
     public ResponseEntity<String> subirArchivo(@RequestParam("file") MultipartFile file) {
         try {
             gerencialService.procesarArchivo(file);
+            personaService.updatePersona();
             return ResponseEntity.ok("Archivo procesado correctamente");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al procesar archivo: " + e.getMessage());

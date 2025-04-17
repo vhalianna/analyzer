@@ -18,6 +18,12 @@
         }
       </div>
     </div>
+
+    @if(cargando){
+      <div class="alert alert-info mt-3">
+        Cargando datos...
+      </div>
+    }
   
     @if(mensaje){
       {{ mensaje }}

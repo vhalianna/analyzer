@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,25 +23,39 @@ public class GerencialService {
         if (cell == null) return "";
         return switch (cell.getCellType()) {
             case STRING -> cell.getStringCellValue().trim();
-            case NUMERIC -> String.valueOf((int) cell.getNumericCellValue()); // sin decimales
+            case NUMERIC -> BigDecimal.valueOf(cell.getNumericCellValue())
+                                    .toPlainString()
+                                    .trim(); // <- conserva todos los dígitos sin notación científica
             case BOOLEAN -> String.valueOf(cell.getBooleanCellValue());
-            case FORMULA -> cell.getCellFormula(); // opcional según tu uso
+            case FORMULA -> cell.getCellFormula(); // opcional
             default -> "";
         };
     }
 
     private int obtenerEnteroDeCelda(Cell cell) {
         if (cell == null) return 0;
-        return switch (cell.getCellType()) {
-            case NUMERIC -> (int) cell.getNumericCellValue();
-            case STRING -> {
-                String texto = cell.getStringCellValue().trim();
-                yield texto.isEmpty() ? 0 : Integer.parseInt(texto);
-            }
-            default -> 0;
-        };
+        try {
+            return switch (cell.getCellType()) {
+                case NUMERIC -> {
+                    double value = cell.getNumericCellValue();
+                    // Validación por si trae decimales no esperados
+                    if (value % 1 != 0) {
+                        throw new NumberFormatException("Valor decimal en celda NUMERIC");
+                    }
+                    yield (int) value;
+                }
+                case STRING -> {
+                    String texto = cell.getStringCellValue().trim();
+                    yield texto.isEmpty() ? 0 : Integer.parseInt(texto);
+                }
+                default -> 0;
+            };
+        } catch (NumberFormatException e) {
+            System.err.println("Error al convertir celda a entero: " + e.getMessage());
+            return 0;
+        }
     }
-
+    
     public void procesarArchivo(MultipartFile file) throws Exception {
 
         InputStream inputStream = file.getInputStream();
