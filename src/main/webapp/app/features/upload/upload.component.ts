@@ -31,7 +31,7 @@ export class UploadComponent {
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
-    this.http.post('http://localhost:8080/api/gerencial/uploadFile', formData)
+    this.http.post('http://localhost:8080/api/gerencial/uploadFile', formData, { responseType: 'text' })
       .subscribe({
         next: () => this.mensaje = 'Archivo subido exitosamente ✅',
         error: (error) => {

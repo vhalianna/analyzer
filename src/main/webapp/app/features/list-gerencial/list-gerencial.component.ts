@@ -30,6 +30,7 @@ export class ListGerencialComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    alert("Hola");
     this.http.get<Gerencial[]>('http://localhost:8080/api/gerencial/lista').subscribe({
       next: (data) => {
         this.datos = data;
