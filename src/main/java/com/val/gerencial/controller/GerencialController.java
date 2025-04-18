@@ -3,8 +3,9 @@ package com.val.gerencial.controller;
 import com.val.gerencial.model.Gerencial;
 import com.val.gerencial.model.ResumenGerencialDTO;
 import com.val.gerencial.service.GerencialService;
-import com.val.gerencial.service.PersonaService;
+import com.val.gerencial.service.CargoService;
 
+import com.val.gerencial.service.PersonaService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,8 @@ public class GerencialController {
     @Autowired
     private GerencialService gerencialService;
 
-    @Autowired PersonaService personaService;
+    @Autowired
+    PersonaService personaService;
 
     @PostMapping("/uploadFile")
     public ResponseEntity<String> subirArchivo(@RequestParam("file") MultipartFile file) {

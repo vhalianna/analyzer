@@ -1,6 +1,10 @@
 package com.val.gerencial.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "persona")
@@ -31,6 +35,10 @@ public class Persona {
 
     @Column(name = "tipo_escal")
     private String tipoEscal;
+
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Cargo> cargos = new ArrayList<>();
 
     public Persona() {
     }
@@ -110,11 +118,19 @@ public class Persona {
         this.tipoEscal = tipoEscal;
     }
 
-    @Override
+  public List<Cargo> getCargos() {
+    return cargos;
+  }
+
+  public void setCargos(List<Cargo> cargos) {
+    this.cargos = cargos;
+  }
+
+  @Override
     public String toString() {
         return "Persona [id=" + id + ", nroLegaj=" + nroLegaj + ", descApyno=" + descApyno + ", cuil=" + cuil
                 + ", cantAnios=" + cantAnios + ", anoAntig=" + anoAntig + ", mesAntig=" + mesAntig + ", tipoEscal="
                 + tipoEscal + "]";
     }
-    
+
 }
