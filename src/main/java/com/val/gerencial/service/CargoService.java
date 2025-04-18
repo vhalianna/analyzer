@@ -33,23 +33,19 @@ public class CargoService {
 
       if (persona.isPresent()) {
         boolean existeCargo = cargoRepository.existsByNroCargo(g.getNro_cargo());
-        if(!existeCargo)
-          {
-
-
-        Cargo c = new Cargo();
-        c.setNroCargo(c.getNroCargo());
-        c.setCodcCateg(c.getCodcCateg());
-        c.setCodcCarac(c.getCodcCarac());
-        c.setTipoCarac(c.getTipoCarac());
-        c.setFecAlta(c.getFecAlta());
-        c.setFecBaja(c.getFecBaja());
-        c.setTipoEstad(c.getTipoEstad());
-        c.setHsCatedra(c.getHsCatedra());
-        c.setPersona(persona.get());
-        cargoRepository.save(c);
-
-          }
+        if(!existeCargo) {
+          Cargo c = new Cargo();
+          c.setNroCargo(g.getNro_cargo());
+          c.setCodcCateg(g.getCodc_categ());
+          c.setCodcCarac(g.getCodc_carac());
+          c.setTipoCarac(g.getTipo_carac());
+          c.setFecAlta(g.getFec_alta());
+          c.setFecBaja(g.getFec_baja());
+          c.setTipoEstad(g.getTipo_estad());
+          c.setHsCatedra(g.getHs_catedra());
+          c.setPersona(persona.get());
+          cargoRepository.save(c);
+        }
       }
     }
   }

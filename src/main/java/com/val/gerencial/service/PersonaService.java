@@ -24,6 +24,10 @@ public class PersonaService {
     @Autowired
     private GerencialRepository gerencialRepository;
 
+    public List<Persona> getPersonas () {
+        return personaRepository.findAll();
+    }
+
     public void updatePersona() {
         List<Gerencial> datosGerencial  = gerencialRepository.findAll();
         //Get all Diferent Personas iinsert into personas

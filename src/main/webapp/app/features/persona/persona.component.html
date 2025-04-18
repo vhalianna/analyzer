@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>Listado de Personas</h2>
+  <table class="table table-bordered table-striped mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Legajo</th>
+        <th>Apellido y Nombre</th>
+        <th>CUIL</th>
+        <th>Cant. Años</th>
+        <th>Año Antig.</th>
+        <th>Mes Antig.</th>
+        <th>Tipo Escalafón</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(p of personas; track personas.id){
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nroLegaj }}</td>
+        <td>{{ p.descApyno }}</td>
+        <td>{{ p.cuil }}</td>
+        <td>{{ p.cantAnios }}</td>
+        <td>{{ p.anoAntig }}</td>
+        <td>{{ p.mesAntig }}</td>
+        <td>{{ p.tipoEscal }}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>

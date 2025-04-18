@@ -28,11 +28,15 @@ public class GerencialController {
     @Autowired
     PersonaService personaService;
 
+    @Autowired
+    CargoService cargoService;
+
     @PostMapping("/uploadFile")
     public ResponseEntity<String> subirArchivo(@RequestParam("file") MultipartFile file) {
         try {
             gerencialService.procesarArchivo(file);
             personaService.updatePersona();
+            cargoService.updateCargo();
             return ResponseEntity.ok("Archivo procesado correctamente");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al procesar archivo: " + e.getMessage());
