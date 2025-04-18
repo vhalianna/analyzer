@@ -20,7 +20,9 @@ public class SecurityConfig {
                     "/api/gerencial/upload-csv",
                     "/api/gerencial/test",
                     "/api/gerencial/resumen",
-                    "/api/gerencial/lista"
+                    "/api/gerencial/lista",
+                    "api/personas",
+                    "api/cargos/persona/{id}"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

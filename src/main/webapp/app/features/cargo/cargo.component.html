@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <h2>Cargos de la Persona ID {{ personaId }}</h2>
+  
+    <table class="table table-bordered table-striped mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Nro Cargo</th>
+          <th>Categoria</th>
+          <th>Caracter</th>
+          <th>Tipo Caracter</th>
+          <th>Fecha Alta</th>
+          <th>Fecha Baja</th>
+          <th>Estado</th>
+          <th>Hs. Cátedra</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(c of cargos; track c.id){
+        <tr>
+          <td>{{ c.nroCargo }}</td>
+          <td>{{ c.codcCateg }}</td>
+          <td>{{ c.codcCarac }}</td>
+          <td>{{ c.tipoCarac }}</td>
+          <td>{{ c.fecAlta }}</td>
+          <td>{{ c.fecBaja }}</td>
+          <td>{{ c.tipoEstad }}</td>
+          <td>{{ c.hsCatedra }}</td>
+        </tr>
+    }
+      </tbody>
+    </table>
+  </div>
+  

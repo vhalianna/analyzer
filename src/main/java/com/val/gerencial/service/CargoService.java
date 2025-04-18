@@ -23,6 +23,10 @@ public class CargoService {
   @Autowired
   private GerencialRepository gerencialRepository;
 
+  public List<Cargo> findByPersonaId(Long id){
+    return cargoRepository.findByPersonaId(id);
+  }
+
   public void updateCargo() {
     List<Gerencial> datosGerencial  = gerencialRepository.findAll();
     //Get all Diferent Personas insert into personas

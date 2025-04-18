@@ -3,7 +3,6 @@
   <table class="table table-bordered table-striped mt-3">
     <thead class="table-dark">
       <tr>
-        <th>ID</th>
         <th>Legajo</th>
         <th>Apellido y Nombre</th>
         <th>CUIL</th>
@@ -11,12 +10,12 @@
         <th>Año Antig.</th>
         <th>Mes Antig.</th>
         <th>Tipo Escalafón</th>
+        <th>Opciones</th>
       </tr>
     </thead>
     <tbody>
-      @for(p of personas; track personas.id){
+      @for(p of personas; track p.id){
       <tr>
-        <td>{{ p.id }}</td>
         <td>{{ p.nroLegaj }}</td>
         <td>{{ p.descApyno }}</td>
         <td>{{ p.cuil }}</td>
@@ -24,6 +23,13 @@
         <td>{{ p.anoAntig }}</td>
         <td>{{ p.mesAntig }}</td>
         <td>{{ p.tipoEscal }}</td>
+        <td>
+          <a title="Cargos" (click)="verCargos(p.id)">
+            <button type="button" class="btn btn-outline-info" >
+              <span class="oi oi-zoom-in"></span>
+            </button>
+          </a>
+        </td>
       </tr>
     }
     </tbody>
