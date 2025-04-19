@@ -1,7 +1,6 @@
 package com.val.gerencial.controller;
 
 import com.val.gerencial.model.Cargo;
-import com.val.gerencial.repository.CargoRepository;
 import com.val.gerencial.service.CargoService;
 
 import org.springframework.beans.factory.annotation.Autowired;

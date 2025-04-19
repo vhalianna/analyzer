@@ -19,10 +19,10 @@ public class LiquidacionService {
   private PersonaRepository personaRepository;
 
   @Autowired
-  private CargoRepository cargoRepository;
+  private GerencialRepository gerencialRepository;
 
   @Autowired
-  private GerencialRepository gerencialRepository;
+  private CargoRepository cargoRepository;
 
   @Autowired
   private LiquidacionRepository liquidacionRepository;
@@ -38,21 +38,23 @@ public class LiquidacionService {
     for (Gerencial g : datosGerencial) {
       // Verificamos si ya existe una persona con ese nro_legaj
       Optional<Persona> persona = personaRepository.findByNroLegaj(g.getNro_legaj());
+      Optional<Cargo> cargo = cargoRepository.findByNroCargo(g.getNro_cargo());
 
-      if (persona.isPresent()) {
-        boolean existeLiquidacion = liquidacionRepository.existsByNroLiquidacionAndPersonaId(g.getNro_liqui(), persona.get().getId());
+      if (persona.isPresent() && cargo.isPresent()) {
+        boolean existeLiquidacion = liquidacionRepository.existsByNroLiquiAndPersonaIdAndCargoId(g.getNro_liqui(), persona.get().getId(),cargo.get().getId());
         if(!existeLiquidacion) {
           Liquidacion l = new Liquidacion();
           l.setPersona(persona.get());
-          l.setAnoLiqui(l.getAnoLiqui());
-          l.setMesLiqui(l.getMesLiqui());
-          l.setNroLiqui(l.getNroLiqui());
-          l.setDiasTrab(l.getDiasTrab());
-          l.setRemCApor(l.getRemCApor());
-          l.setRemSApor(l.getRemSApor());
-          l.setPorcAplic(l.getPorcAplic());
-          l.setEnBanco(l.getEnBanco());
-          l.setCodigoBanco(l.getCodigoBanco());
+          l.setCargo(cargo.get());
+          l.setAnoLiqui(g.getAno_liqui());
+          l.setMesLiqui(g.getMes_liqui());
+          l.setNroLiqui(g.getNro_liqui());
+          l.setDiasTrab(g.getDias_trab());
+          l.setRemCApor(g.getRem_c_apor());
+          l.setRemSApor(g.getRem_s_apor());
+          l.setPorcAplic(g.getPorc_aplic());
+          l.setEnBanco(g.getEn_banco());
+          l.setCodigoBanco(g.getCodigo_banco());
           liquidacionRepository.save(l);
         }
       }

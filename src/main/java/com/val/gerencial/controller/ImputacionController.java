@@ -1,14 +1,9 @@
 package com.val.gerencial.controller;
 
-import com.val.gerencial.model.Imputacion;
-
 import com.val.gerencial.service.ImputacionService;
-import com.val.gerencial.service.LiquidacionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/imputaciones")

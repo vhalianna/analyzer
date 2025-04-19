@@ -42,10 +42,15 @@ public class GerencialController {
     @PostMapping("/uploadFile")
     public ResponseEntity<String> subirArchivo(@RequestParam("file") MultipartFile file) {
         try {
+            log.info("Comienzo Procesamiento Archivo: {}",file.getOriginalFilename());
             gerencialService.procesarArchivo(file);
+            log.info("Comienzo Procesamiento Personas");
             personaService.updatePersona();
+            log.info("Comienzo Procesamiento Cargos");
             cargoService.updateCargo();
+            log.info("Comienzo Procesamiento Liquidaciones");
             liquidacionService.updateLiquidacion();
+            log.info("Comienzo Procesamiento Imputaciones");
             imputacionService.updateImputacion();
             return ResponseEntity.ok("Archivo procesado correctamente");
         } catch (Exception e) {

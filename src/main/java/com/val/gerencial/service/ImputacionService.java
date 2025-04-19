@@ -1,7 +1,6 @@
 package com.val.gerencial.service;
 
 import com.val.gerencial.model.*;
-import com.val.gerencial.repository.CargoRepository;
 import com.val.gerencial.repository.GerencialRepository;
 import com.val.gerencial.repository.ImputacionRepository;
 import com.val.gerencial.repository.LiquidacionRepository;
@@ -41,25 +40,24 @@ public class ImputacionService {
       Optional<Persona> persona = personaRepository.findByNroLegaj(g.getNro_legaj());
 
       if (persona.isPresent()) {
-        Optional<Liquidacion> liquidacion = liquidacionRepository.findByNroLiquidacionAndPersonaId(g.getNro_liqui(), persona.get().getId());
+        Optional<Liquidacion> liquidacion = liquidacionRepository.findByNroLiquiAndPersonaId(g.getNro_liqui(), persona.get().getId());
         if(liquidacion.isPresent()) {
         boolean existeImputacion = imputacionRepository.existsByLiquidacionIdAndCodnImput(liquidacion.get().getId(), g.getCodn_imput());
           if(!existeImputacion)
           {
             Imputacion i = new Imputacion();
           i.setLiquidacion(liquidacion.get());
-          i.setCodnImput(i.getCodnImput());
-          i.setCodnFuent(i.getCodnFuent());
-          i.setCodnDepen(i.getCodnDepen());
-          i.setNroInciso(i.getNroInciso());
-          i.setPorcImput(i.getPorcImput());
-          i.setImpGasto(i.getImpGasto());
-          i.setImpBruto(i.getImpBruto());
-          i.setImpNetos(i.getImpNetos());
-          i.setImpDctos(i.getImpDctos());
-          i.setImpAport(i.getImpAport());
-          i.setImpFliar(i.getImpFliar());
-
+          i.setCodnImput(g.getCodn_imput());
+          i.setCodnFuent(g.getCodn_fuent());
+          i.setCodnDepen(g.getCodn_depen());
+          i.setNroInciso(g.getNro_inciso());
+          i.setPorcImput(g.getPorc_imput());
+          i.setImpGasto(g.getImp_gasto());
+          i.setImpBruto(g.getImp_bruto());
+          i.setImpNetos(g.getImp_netos());
+          i.setImpDctos(g.getImp_dctos());
+          i.setImpAport(g.getImp_aport());
+          i.setImpFliar(g.getImp_fliar());
           imputacionRepository.save(i);
           }          
         }

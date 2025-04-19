@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LiquidacionRepository extends JpaRepository<Liquidacion, Long> {
-  boolean existsByNroLiquidacionAndPersonaId(int nroLiqui, Long personaId);
-  Optional<Liquidacion> findByNroLiquidacionAndPersonaId(int nroLiqui, Long personaId);
+  boolean existsByNroLiquiAndPersonaIdAndCargoId(int nroLiqui, Long personaId, Long cargoId);
+  Optional<Liquidacion> findByNroLiquiAndPersonaId(int nroLiqui, Long personaId);
   List<Liquidacion> findByPersonaId(Long personaId);
 }
