@@ -46,8 +46,11 @@ public class Gerencial {
     private Double imp_fliar;
     private int ano_liqui;
     private int mes_liqui;
-    private String nro_liqui;
-    private String tipo_estad;
+    private int nro_liqui;
+    //private char tipo_estad;
+    @Enumerated(EnumType.STRING)
+    private TipoEstado tipo_estad;
+
     private String cuil;
     private int hs_catedra;
     private int dias_trab;
@@ -71,7 +74,7 @@ public class Gerencial {
                      int ano_antig, int mes_antig, int nro_cargo, Categoria codc_categ, Dedicacion codc_dedic, String tipo_escal,
                      Caracter codc_carac, int codc_uacad, String codc_regio, LocalDate fec_alta, LocalDate fec_baja, Double porc_imput,
                      Double imp_gasto, Double imp_bruto, Double imp_netos, Double imp_dctos, Double imp_aport, Double imp_fliar,
-                     int ano_liqui, int mes_liqui, String nro_liqui, String tipo_estad, String cuil, int hs_catedra, int dias_trab,
+                     int ano_liqui, int mes_liqui, int nro_liqui, TipoEstado tipo_estad, String cuil, int hs_catedra, int dias_trab,
                      Double rem_c_apor, Double otr_no_rem, Double rem_s_apor, Double porc_aplic, int coddependesemp, String cod_clasif_cargo,
                      TipoCaracter tipo_carac, String en_banco, int codigo_banco) {
         this.id = id;
@@ -117,10 +120,6 @@ public class Gerencial {
         this.en_banco = en_banco;
         this.codigo_banco = codigo_banco;
     }
-
-
-// Getters y setters omitidos por brevedad
-
 
     public Long getId() {
         return id;
@@ -346,19 +345,19 @@ public class Gerencial {
         this.cuil = cuil;
     }
 
-    public String getTipo_estad() {
+    public TipoEstado getTipo_estad() {
         return tipo_estad;
     }
 
-    public void setTipo_estad(String tipo_estad) {
+    public void setTipo_estad(TipoEstado tipo_estad) {
         this.tipo_estad = tipo_estad;
     }
 
-    public String getNro_liqui() {
+    public int getNro_liqui() {
         return nro_liqui;
     }
 
-    public void setNro_liqui(String nro_liqui) {
+    public void setNro_liqui(int nro_liqui) {
         this.nro_liqui = nro_liqui;
     }
 

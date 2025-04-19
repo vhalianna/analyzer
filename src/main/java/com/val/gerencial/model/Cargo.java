@@ -34,7 +34,7 @@ public class Cargo {
   private LocalDate fecBaja;
 
   @Column (name = "tipo_estad")
-  private String tipoEstad;
+  private TipoEstado tipoEstad;
 
   @Column (name = "hs_catedra")
   private int hsCatedra;
@@ -43,7 +43,7 @@ public class Cargo {
   @JoinColumn(name = "persona_id")
   private Persona persona;
 
-  public Cargo(int nroCargo, Categoria codcCateg, Caracter codcCarac, TipoCaracter  tipoCarac, LocalDate fecAlta, LocalDate fecBaja, String tipoEstad, int hsCatedra, Persona persona) {
+  public Cargo(int nroCargo, Categoria codcCateg, Caracter codcCarac, TipoCaracter  tipoCarac, LocalDate fecAlta, LocalDate fecBaja, TipoEstado tipoEstad, int hsCatedra, Persona persona) {
     this.nroCargo = nroCargo;
     this.codcCateg = codcCateg;
     this.codcCarac = codcCarac;
@@ -115,11 +115,11 @@ public class Cargo {
     this.fecBaja = fecBaja;
   }
 
-  public String getTipoEstad() {
+  public TipoEstado getTipoEstad() {
     return tipoEstad;
   }
 
-  public void setTipoEstad(String tipoEstad) {
+  public void setTipoEstad(TipoEstado tipoEstad) {
     this.tipoEstad = tipoEstad;
   }
 

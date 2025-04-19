@@ -3,6 +3,8 @@ package com.val.gerencial.controller;
 import com.val.gerencial.model.Gerencial;
 import com.val.gerencial.model.ResumenGerencialDTO;
 import com.val.gerencial.service.GerencialService;
+import com.val.gerencial.service.ImputacionService;
+import com.val.gerencial.service.LiquidacionService;
 import com.val.gerencial.service.CargoService;
 
 import com.val.gerencial.service.PersonaService;
@@ -31,12 +33,20 @@ public class GerencialController {
     @Autowired
     CargoService cargoService;
 
+    @Autowired
+    LiquidacionService liquidacionService;
+
+    @Autowired
+    ImputacionService imputacionService;
+
     @PostMapping("/uploadFile")
     public ResponseEntity<String> subirArchivo(@RequestParam("file") MultipartFile file) {
         try {
             gerencialService.procesarArchivo(file);
             personaService.updatePersona();
             cargoService.updateCargo();
+            liquidacionService.updateLiquidacion();
+            imputacionService.updateImputacion();
             return ResponseEntity.ok("Archivo procesado correctamente");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error al procesar archivo: " + e.getMessage());

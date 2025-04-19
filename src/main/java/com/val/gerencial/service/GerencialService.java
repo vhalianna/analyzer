@@ -115,10 +115,11 @@ public class GerencialService {
             g.setMes_liqui((int) row.getCell(26).getNumericCellValue());
 
             //g.setNro_liqui(row.getCell(27).getStringCellValue());
-            g.setNro_liqui(obtenerTextoDeCelda(row.getCell(27)));
+            //g.setNro_liqui(obtenerTextoDeCelda(row.getCell(27)));
+            g.setNro_liqui((int) row.getCell(27).getNumericCellValue());
 
-            g.setTipo_estad(row.getCell(28).getStringCellValue());
-
+            //g.setTipo_estad(row.getCell(28).getStringCellValue());
+            g.setTipo_estad(TipoEstado.valueOf(row.getCell(28).getStringCellValue()));
             //g.setCuil(row.getCell(29).getStringCellValue());
             g.setCuil(obtenerTextoDeCelda(row.getCell(29)));
             
