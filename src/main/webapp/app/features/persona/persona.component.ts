@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
 import { Persona } from './persona.model';
 import { PersonaService } from './persona.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CargoComponent } from '../cargo/cargo.component';
 
 @Component({
   selector: 'app-persona',
@@ -14,7 +16,7 @@ export class PersonaComponent implements OnInit {
 
   personas: Persona[] = [];
 
-  constructor(private personaService: PersonaService,private router: Router) {}
+  constructor(private personaService: PersonaService,private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.personaService.getAllPersonas().subscribe({
@@ -28,5 +30,15 @@ export class PersonaComponent implements OnInit {
 
   verCargos(id: number): void{
     this.router.navigate(['/cargos',id]);
+  }
+
+  abrirDialogoCargos(persona: Persona): void {
+    this.dialog.open(CargoComponent, {
+      width: '90vw',
+      height: '90vh',
+      maxWidth: '100vw',
+      data: persona,
+      panelClass: 'custom-dialog-container'
+    });
   }
 }

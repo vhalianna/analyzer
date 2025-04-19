@@ -30,6 +30,11 @@ public class LiquidacionService {
   public List<Liquidacion> findByPersonaId(Long id){
     return liquidacionRepository.findByPersonaId(id);
   }
+  
+  public List<Liquidacion> findByCargoId(Long id){
+    return liquidacionRepository.findByCargoId(id);
+  }
+  
 
   public void updateLiquidacion() {
     List<Gerencial> datosGerencial  = gerencialRepository.findAll();

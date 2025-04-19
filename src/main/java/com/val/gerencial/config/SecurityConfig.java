@@ -22,7 +22,11 @@ public class SecurityConfig {
                     "/api/gerencial/resumen",
                     "/api/gerencial/lista",
                     "api/personas",
-                    "api/cargos/persona/{id}"
+                    "api/cargos/persona/{id}",
+                    "api/imputaciones/liquidacion/{id}",
+                    "api/liquidaciones/cargo/{id}",
+                    "api/partidas",
+                    "api/partidas/periodo/{id}"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

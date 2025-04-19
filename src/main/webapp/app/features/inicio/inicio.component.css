@@ -1,0 +1,13 @@
+.inicio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: linear-gradient(135deg, #ffe4ec, #fff5f8);
+  }
+  
+  .inicio-card {
+    width: 500px;
+    text-align: center;
+  }
+  

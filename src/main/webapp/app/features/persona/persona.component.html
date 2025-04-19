@@ -24,12 +24,14 @@
         <td>{{ p.mesAntig }}</td>
         <td>{{ p.tipoEscal }}</td>
         <td>
-          <a title="Cargos" (click)="verCargos(p.id)">
+          <!--a title="Cargos" (click)="verCargos(p.id)">
             <button type="button" class="btn btn-outline-info" >
               <span class="oi oi-zoom-in"></span>
             </button>
-          </a>
-        </td>
+          </a-->
+          <button type="button" class="btn btn-sm btn-outline-secondary float-end" (click)="abrirDialogoCargos(p)">
+            Ver cargos
+          </button>
       </tr>
     }
     </tbody>

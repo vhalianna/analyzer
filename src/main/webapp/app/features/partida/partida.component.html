@@ -1,0 +1,22 @@
+<div class="container mt-4">
+    <h2>Listado por Imputaciones</h2>
+  
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Seleccione una Partida</mat-label>
+      <mat-select [(ngModel)]="partidaSeleccionada" (selectionChange)="cargarPeriodos()">
+        <mat-option *ngFor="let partida of partidas" [value]="partida">
+          {{ partida.codigo }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <div *ngIf="periodos.length > 0" class="mt-4">
+      <h3>Períodos con Imputaciones para: {{ partidaSeleccionada.codigo }}</h3>
+  
+      <mat-list>
+        <mat-list-item *ngFor="let periodo of periodos">
+          {{ periodo.ano }} - {{ periodo.mes }} ({{ periodo.cantidad }} imputaciones)
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<div *ngFor="let liq of liquidaciones" class="mb-2">
+    <div class="card">
+      <div class="card-header">
+        Liquidación #{{ liq.nroLiqui }} - {{ liq.mesLiqui }}/{{ liq.anoLiqui }}
+        <button class="btn btn-sm btn-outline-secondary float-end" (click)="liq.showImp = !liq.showImp">
+          {{ liq.showImp ? 'Ocultar' : 'Ver' }} Imputaciones
+        </button>
+      </div>
+      <div class="card-body">
+        <p><strong>Días Trabajados:</strong> {{ liq.diasTrab }}</p>
+        <p><strong>Rem. C/Aporte:</strong> {{ liq.remCApor }}</p>
+        <p><strong>Rem. S/Aporte:</strong> {{ liq.remSApor }}</p>
+        <p><strong>Banco:</strong> {{ liq.enBanco }} ({{ liq.codigoBanco }})</p>
+  
+        <div *ngIf="liq.showImp">
+          <app-imputacion [liquidacion]="liq"></app-imputacion>
+        </div>
+      </div>
+    </div>
+  </div>
+  

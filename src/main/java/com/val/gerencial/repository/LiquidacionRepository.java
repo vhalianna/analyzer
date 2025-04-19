@@ -13,4 +13,5 @@ public interface LiquidacionRepository extends JpaRepository<Liquidacion, Long> 
   boolean existsByNroLiquiAndPersonaIdAndCargoId(int nroLiqui, Long personaId, Long cargoId);
   Optional<Liquidacion> findByNroLiquiAndPersonaIdAndCargoId(int nroLiqui, Long personaId, Long cargoId);
   List<Liquidacion> findByPersonaId(Long personaId);
+  List<Liquidacion> findByCargoId (Long personaId);
 }

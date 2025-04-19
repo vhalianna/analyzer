@@ -6,6 +6,7 @@ import com.val.gerencial.repository.GerencialRepository;
 import com.val.gerencial.repository.ImputacionRepository;
 import com.val.gerencial.repository.LiquidacionRepository;
 import com.val.gerencial.repository.PersonaRepository;
+import com.val.gerencial.repository.PartidaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,9 @@ public class ImputacionService {
   @Autowired
   private GerencialRepository gerencialRepository;
 
+  @Autowired 
+  private PartidaRepository partidaRepository;
+
   public List<Imputacion> findByLiquidacionId(Long id){
     return imputacionRepository.findByLiquidacionId(id);
   }
@@ -45,14 +49,24 @@ public class ImputacionService {
       Optional<Cargo> cargo = cargoRepository.findByNroCargo(g.getNro_cargo());
 
       if (persona.isPresent() && cargo.isPresent()) {
+        
+        Optional<Partida> partida = partidaRepository.findByCodigo(g.getCodn_imput());
+        Partida p = new Partida();
+        if(!partida.isPresent() ) {
+          p = new Partida(g.getCodn_imput());
+          p = partidaRepository.save(p);
+        } else {
+          p = partida.get();
+        }
+
         Optional<Liquidacion> liquidacion = liquidacionRepository.findByNroLiquiAndPersonaIdAndCargoId(g.getNro_liqui(), persona.get().getId(),cargo.get().getId());
-        if(liquidacion.isPresent()) {
-        boolean existeImputacion = imputacionRepository.existsByLiquidacionIdAndCodnImput(liquidacion.get().getId(), g.getCodn_imput());
+        if(liquidacion.isPresent() ) {
+        boolean existeImputacion = imputacionRepository.existsByLiquidacionIdAndPartidaId(liquidacion.get().getId(), p.getId());
           if(!existeImputacion)
           {
             Imputacion i = new Imputacion();
           i.setLiquidacion(liquidacion.get());
-          i.setCodnImput(g.getCodn_imput());
+          i.setPartida(p);
           i.setCodnFuent(g.getCodn_fuent());
           i.setCodnDepen(g.getCodn_depen());
           i.setNroInciso(g.getNro_inciso());

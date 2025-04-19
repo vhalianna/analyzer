@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ImputacionRepository extends JpaRepository<Imputacion, Long> {
-  boolean existsByLiquidacionIdAndCodnImput(Long liquidacionId, String codnImput);
+  boolean existsByLiquidacionIdAndPartidaId(Long liquidacionId, Long partidaId);
   List<Imputacion> findByLiquidacionId(Long liquidacionId);
+  List<Imputacion> findByPartidaId(Long partidaId);
 }

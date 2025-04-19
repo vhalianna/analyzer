@@ -4,8 +4,9 @@ export interface Cargo {
     codcCateg: string;
     codcCarac: string;
     tipoCarac: string;
-    fecAlta: string; // ISO format date
-    fecBaja: string; // ISO format date
+    fecAlta: Date;
+    fecBaja: Date | null;
     tipoEstad: string;
     hsCatedra: number;
+    showLiqui?: boolean;
   }

@@ -18,8 +18,12 @@ public class Imputacion {
     @JoinColumn(name = "liquidacion_id")
     private Liquidacion liquidacion;
 
-    @Column (name = "codn_imput")
-    private String codnImput;
+    /*@Column (name = "codn_imput")
+    private String codnImput;*/
+
+    @ManyToOne
+    @JoinColumn(name = "partida_id")
+    private Partida partida;
 
     @Column (name = "codn_fuent")
     private int codnFuent;
@@ -51,11 +55,10 @@ public class Imputacion {
     @Column (name = "imp_fliar")
     private Double impFliar;
 
-    public Imputacion(Liquidacion liquidacion, String codnImput, int codnFuent, int codnDepen, int nroInciso,
+    public Imputacion(Liquidacion liquidacion, int codnFuent, int codnDepen, int nroInciso,
             Double porcImput, Double impGasto, Double impBruto, Double impNetos, Double impDctos, Double impAport,
             Double impFliar) {
         this.liquidacion = liquidacion;
-        this.codnImput = codnImput;
         this.codnFuent = codnFuent;
         this.codnDepen = codnDepen;
         this.nroInciso = nroInciso;
@@ -85,14 +88,6 @@ public class Imputacion {
 
     public void setLiquidacion(Liquidacion liquidacion) {
         this.liquidacion = liquidacion;
-    }
-
-    public String getCodnImput() {
-        return codnImput;
-    }
-
-    public void setCodnImput(String codnImput) {
-        this.codnImput = codnImput;
     }
 
     public int getCodnFuent() {
@@ -175,12 +170,20 @@ public class Imputacion {
         this.impFliar = impFliar;
     }
 
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+
     @Override
     public String toString() {
-        return "Imputacion {" + "id=" + id + ", liquidacion=" + liquidacion + ", codnImput=" + codnImput
-                + ", codnFuent=" + codnFuent + ", codnDepen=" + codnDepen + ", nroInciso=" + nroInciso + ", porcImput="
-                + porcImput + ", impGasto=" + impGasto + ", impBruto=" + impBruto + ", impNetos=" + impNetos
-                + ", impDctos=" + impDctos + ", impAport=" + impAport + ", impFliar=" + impFliar + '}';
+        return "Imputacion [id=" + id + ", liquidacion=" + liquidacion + ", partida=" + partida + ", codnFuent="
+                + codnFuent + ", codnDepen=" + codnDepen + ", nroInciso=" + nroInciso + ", porcImput=" + porcImput
+                + ", impGasto=" + impGasto + ", impBruto=" + impBruto + ", impNetos=" + impNetos + ", impDctos="
+                + impDctos + ", impAport=" + impAport + ", impFliar=" + impFliar + "]";
     }
  
  

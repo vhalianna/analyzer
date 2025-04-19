@@ -22,4 +22,9 @@ public class LiquidacionController {
     public List<Liquidacion> obtenerLiquidacionesPorPersona(@PathVariable("id") Long id) {
         return liquidacionService.findByPersonaId(id);
     }
+
+    @GetMapping("/cargo/{id}") 
+    public List<Liquidacion> obtenerLiquidacionesPorCargo(@PathVariable("id") Long id) {
+        return liquidacionService.findByCargoId(id);
+    }
 }

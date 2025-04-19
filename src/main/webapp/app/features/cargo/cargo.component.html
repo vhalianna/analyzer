@@ -1,6 +1,5 @@
 <div class="container mt-4">
-    <h2>Cargos de la Persona ID {{ personaId }}</h2>
-  
+    <!--h2>Cargos de la Persona ID {{ personaId }}</h2>
     <table class="table table-bordered table-striped mt-3">
       <thead class="table-dark">
         <tr>
@@ -28,6 +27,25 @@
         </tr>
     }
       </tbody>
-    </table>
+    </table-->
+
+    <div class="container mt-4">
+      <h2>Cargos de {{ persona.descApyno }}</h2>
+    
+      <div *ngFor="let cargo of cargos" class="card mb-3">
+        <div class="card-header">
+          Cargo #{{ cargo.nroCargo }} | Alta: {{ cargo.fecAlta | date:'dd/MM/yyyy' }} - Baja: {{ cargo.fecBaja | date:'dd/MM/yyyy'}}
+          <!--button class="btn btn-sm btn-outline-secondary float-end" (click)="cargo.showLiqui = !cargo.showLiqui">
+            {{ cargo.showLiqui ? 'Ocultar' : 'Ver' }} Liquidaciones
+          </button-->
+          <button mat-raised-button color="primary float-end" (click)="cargo.showLiqui = !cargo.showLiqui">
+            {{ cargo.showLiqui ? 'Ocultar Liquidaciones' : 'Ver Liquidaciones' }}
+          </button>
+        </div>
+        <div class="card-body" *ngIf="cargo.showLiqui">
+          <app-liquidacion [cargo]="cargo"></app-liquidacion>
+        </div>
+      </div>
+    </div>
   </div>
   

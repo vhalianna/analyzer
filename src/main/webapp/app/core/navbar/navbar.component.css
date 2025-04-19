@@ -1,0 +1,26 @@
+.mat-toolbar-rose {
+    background-color: #ffe4ec;
+    color: #ad1457;
+  }
+  
+  .angular-logo {
+    margin-right: 8px;
+    color: #ad1457;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 18px;
+    color: inherit;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  a[mat-button] {
+    color: #ad1457;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
