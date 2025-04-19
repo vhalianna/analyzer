@@ -13,35 +13,98 @@
   }
   
     @if(!cargando && datos.length > 0){
-    <div class="table-responsive mt-3">
-      <table class="table table-striped table-bordered align-middle">
-        <thead class="table-dark">
+      <div class="table-responsive scroll-table mt-3">
+        <table class="table table-striped table-bordered align-middle">
+          <thead class="table-dark">
           <tr>
+            <th>Fuente</th>
+            <th>Dependencia</th>
+            <th>Imputacion</th>
+            <th>Inciso</th>
+            <th>Legajo</th>
             <th>Apellido y Nombre</th>
-            <th>CUIL</th>
-            <th>Unidad Académica</th>
+            <th>Años</th>
+            <th>Año antiguedad</th>
+            <th>Mes Antiguedad</th>
+            <th>Nro Cargo</th>
             <th>Categoría</th>
             <th>Dedicación</th>
-            <th>Alta</th>
-            <th>Baja</th>
-            <th>Bruto</th>
-            <th>Legajo</th>
-            <th>Estado</th>
+            <th>Escala</th>
+            <th>Caracter</th>
+            <th>codigo uacad</th>
+            <th>codigo Regio</th>
+            <th>fecha Alta</th>
+            <th>Fecha baja</th>
+            <th>% imputacion</th>
+            <th>Imp Gasto</th>
+            <th>Imp Bruto</th>
+            <th>Imp Neto</th>
+            <th>Imp Descuentos</th>
+            <th>Imp Aporte</th>
+            <th>Imp Fliar</th>
+            <th>Año Liquidacion</th>
+            <th>Mes Liquidacion</th>
+            <th>Nro Liquidacion</th>
+            <th>Tipo Estado</th>
+            <th>CUIL</th>
+            <th>hras Catedra</th>
+            <th>Dias trabajados</th>
+            <th>Rem Apor</th>
+            <th>Otros No Rem</th>
+            <th>Remun Sin aportes</th>
+            <th>% Aplicacion</th>
+            <th>Cod Dependencia</th>
+            <th>Codigo Clasificacion Cargo</th>
+            <th>Tipo Caracter</th>
+            <th>En Banco</th>
+            <th>Codigo Banco</th>
           </tr>
         </thead>
         <tbody>
           @for(item of datos; track item.id){
           <tr>
+            <td>{{ item.codn_fuent }}</td>
+            <td>{{ item.codn_depen}}</td>
+            <td>{{ item.codn_imput}}</td>
+            <td>{{ item.nro_inciso}}</td>
+            <td>{{ item.nro_legaj }}</td>
             <td>{{ item.desc_apyno }}</td>
-            <td>{{ item.cuil }}</td>
-            <td>{{ item.codc_uacad }}</td>
+            <td>{{ item.cant_anios }}</td>
+            <td>{{ item.ano_antig }}</td>
+            <td>{{ item.mes_antig }}</td>
+            <td>{{ item.nro_cargo }}</td>
             <td>{{ item.codc_categ }}</td>
             <td>{{ item.codc_dedic }}</td>
-            <td>{{ item.fec_alta }}</td>
+            <td>{{ item.tipo_escal }}</td>
+            <td>{{ item.codc_carac }}</td>
+            <td>{{ item.codc_uacad }}</td>
+            <td>{{ item.codc_regio }}</td>
+            <td>{{ item.fec_alta}}</td>
             <td>{{ item.fec_baja }}</td>
+            <td>{{ item.porc_imput }}</td>
+            <td>{{ item.imp_gasto }}</td>
             <td>{{ item.imp_bruto }}</td>
-            <td>{{ item.nro_legaj }}</td>
+            <td>{{ item.imp_netos }}</td>
+            <td>{{ item.imp_dctos }}</td>
+            <td>{{ item.imp_aport }}</td>
+            <td>{{ item.imp_fliar }}</td>
+            <td>{{ item.ano_liqui }}</td>
+            <td>{{ item.mes_liqui }}</td>
+            <td>{{ item.nro_liqui }}</td>
             <td>{{ item.tipo_estad }}</td>
+            <td>{{ item.cuil }}</td>
+            <td>{{ item.hs_catedra }}</td>
+            <td>{{ item.dias_trab }}</td>
+            <td>{{ item.rem_c_apor }}</td>
+            <td>{{ item.otr_no_rem }}</td>
+            <td>{{ item.rem_s_apor}}</td>
+            <td>{{ item.porc_aplic }}</td>
+            <td>{{ item.coddependesemp }}</td>
+            <td>{{ item.cod_clasif_cargo }}</td>
+            <td>{{ item.tipo_carac }}</td>
+            <td>{{ item.en_banco }}</td>
+            <td>{{ item.codigo_banco }}</td>
+            
           </tr>
         }
         </tbody>

@@ -1,20 +1,60 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface Gerencial {
-  id: number;
-  desc_apyno: string;
-  cuil: string;
-  codc_uacad: number;
-  codc_categ: string;
-  codc_dedic: string;
-  fec_alta: string;
-  fec_baja: string;
-  imp_bruto: number;
+export interface Gerencial {
+  id?: number;
+
+  codn_fuent: number;
+  codn_depen: number;
+  codn_imput: string;
+  nro_inciso: number;
   nro_legaj: number;
-  tipo_estad: string;
-  // Podés agregar más campos si querés mostrar más
+  desc_apyno: string;
+  cant_anios: number;
+  ano_antig: number;
+  mes_antig: number;
+  nro_cargo: number;
+
+  codc_categ: '...' | string;       // Reemplazá '...' con los valores posibles si tenés el enum
+  codc_dedic: '...' | string;
+  tipo_escal: string;
+  codc_carac: '...' | string;
+
+  codc_uacad: number;
+  codc_regio: string;
+  fec_alta: string;                 // ISO date string (yyyy-MM-dd)
+  fec_baja: string;
+
+  porc_imput: number;
+  imp_gasto: number;
+  imp_bruto: number;
+  imp_netos: number;
+  imp_dctos: number;
+  imp_aport: number;
+  imp_fliar: number;
+
+  ano_liqui: number;
+  mes_liqui: number;
+  nro_liqui: number;
+  tipo_estad: '...' | string;
+
+  cuil: string;
+  hs_catedra: number;
+  dias_trab: number;
+
+  rem_c_apor: number;
+  otr_no_rem: number;
+  rem_s_apor: number;
+  porc_aplic: number;
+
+  coddependesemp: number;
+  cod_clasif_cargo: string;
+  tipo_carac: '...' | string;
+
+  en_banco: string;
+  codigo_banco: number;
 }
+
 
 @Component({
   selector: 'app-list-gerencial',
