@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 export interface Gerencial {
   id?: number;
@@ -58,7 +59,7 @@ export interface Gerencial {
 
 @Component({
   selector: 'app-list-gerencial',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './list-gerencial.component.html',
   styleUrls: ['./list-gerencial.component.css']
 })
@@ -82,4 +83,15 @@ export class ListGerencialComponent implements OnInit {
       }
     });
   }
+
+  filtro: Partial<Gerencial> = {};
+get datosFiltrados(): Gerencial[] {
+  return this.datos.filter(item => {
+    return Object.entries(this.filtro).every(([key, val]) => {
+      if (val === null || val === '') return true;
+      const value = (item as any)[key];
+      return value?.toString().toLowerCase().includes(val.toString().toLowerCase());
+    });
+  });
+}
 }

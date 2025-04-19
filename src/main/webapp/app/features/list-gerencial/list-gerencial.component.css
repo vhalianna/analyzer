@@ -1,5 +1,15 @@
 .scroll-table {
-    max-height: 600px;
+    height: calc(100vh - 100px); /* antes 120px o menos, ahora más espacio */
     overflow-y: auto;
     overflow-x: auto;
+  }
+
+  .full-page {
+    position: absolute;
+    top: 56px; /* altura del navbar si usás Bootstrap */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    background-color: white;
   }
