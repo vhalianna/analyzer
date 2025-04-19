@@ -1,6 +1,7 @@
 package com.val.gerencial.service;
 
 import com.val.gerencial.model.*;
+import com.val.gerencial.repository.CargoRepository;
 import com.val.gerencial.repository.GerencialRepository;
 import com.val.gerencial.repository.ImputacionRepository;
 import com.val.gerencial.repository.LiquidacionRepository;
@@ -17,6 +18,9 @@ public class ImputacionService {
 
   @Autowired
   private PersonaRepository personaRepository;
+
+  @Autowired
+  private CargoRepository cargoRepository;
 
   @Autowired
   private ImputacionRepository imputacionRepository;
@@ -38,9 +42,10 @@ public class ImputacionService {
     for (Gerencial g : datosGerencial) {
       // Verificamos si ya existe una persona con ese nro_legaj
       Optional<Persona> persona = personaRepository.findByNroLegaj(g.getNro_legaj());
+      Optional<Cargo> cargo = cargoRepository.findByNroCargo(g.getNro_cargo());
 
-      if (persona.isPresent()) {
-        Optional<Liquidacion> liquidacion = liquidacionRepository.findByNroLiquiAndPersonaId(g.getNro_liqui(), persona.get().getId());
+      if (persona.isPresent() && cargo.isPresent()) {
+        Optional<Liquidacion> liquidacion = liquidacionRepository.findByNroLiquiAndPersonaIdAndCargoId(g.getNro_liqui(), persona.get().getId(),cargo.get().getId());
         if(liquidacion.isPresent()) {
         boolean existeImputacion = imputacionRepository.existsByLiquidacionIdAndCodnImput(liquidacion.get().getId(), g.getCodn_imput());
           if(!existeImputacion)
@@ -58,7 +63,7 @@ public class ImputacionService {
           i.setImpDctos(g.getImp_dctos());
           i.setImpAport(g.getImp_aport());
           i.setImpFliar(g.getImp_fliar());
-          imputacionRepository.save(i);
+          imputacionRepository.save(i); 
           }          
         }
       }

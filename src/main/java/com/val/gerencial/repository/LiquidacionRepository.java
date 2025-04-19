@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LiquidacionRepository extends JpaRepository<Liquidacion, Long> {
   boolean existsByNroLiquiAndPersonaIdAndCargoId(int nroLiqui, Long personaId, Long cargoId);
-  Optional<Liquidacion> findByNroLiquiAndPersonaId(int nroLiqui, Long personaId);
+  Optional<Liquidacion> findByNroLiquiAndPersonaIdAndCargoId(int nroLiqui, Long personaId, Long cargoId);
   List<Liquidacion> findByPersonaId(Long personaId);
 }
